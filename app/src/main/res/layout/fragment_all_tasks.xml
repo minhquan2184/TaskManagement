@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingBottom="100dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Top Bar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="16dp">
+                <ImageView android:id="@+id/btnHome" android:layout_width="40dp" android:layout_height="40dp" android:padding="8dp" android:src="@drawable/ic_home" android:contentDescription="Home" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="All Tasks" android:textSize="18sp" android:textStyle="bold" android:textColor="@color/on_surface" android:fontFamily="sans-serif-medium" />
+                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:padding="8dp" android:src="@drawable/ic_filter" android:contentDescription="Filter" />
+            </LinearLayout>
+
+            <!-- Search -->
+            <EditText android:id="@+id/etSearch" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginHorizontal="20dp" android:layout_marginTop="4dp" android:background="@drawable/bg_search_bar" android:drawableStart="@drawable/ic_search" android:drawablePadding="12dp" android:hint="Search tasks..." android:inputType="text" android:importantForAutofill="no" android:paddingHorizontal="16dp" android:textSize="14sp" android:textColor="@color/on_surface" android:textColorHint="@color/outline" />
+
+            <!-- OVERDUE expanded -->
+            <LinearLayout android:id="@+id/headerOverdue" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:paddingHorizontal="24dp" android:paddingVertical="8dp" android:gravity="center_vertical" android:clickable="true" android:focusable="true">
+                <ImageView android:id="@+id/ivOverdueToggle" android:layout_width="20dp" android:layout_height="20dp" android:layout_marginEnd="6dp" android:src="@drawable/ic_chevron_down" app:tint="@color/error" android:contentDescription="Expand" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="OVERDUE" android:textStyle="bold" android:textSize="13sp" android:textColor="@color/error" />
+                <TextView android:id="@+id/tvOverdueCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@drawable/bg_section_header" android:paddingHorizontal="8dp" android:paddingVertical="2dp" android:text="0" android:textSize="12sp" android:textColor="@color/error" />
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvOverdue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/bg_glass_card"
+                android:elevation="1dp"
+                android:padding="4dp"
+                android:visibility="visible"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_task" />
+
+            <!-- TODAY expanded -->
+            <LinearLayout android:id="@+id/headerToday" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:paddingHorizontal="24dp" android:paddingVertical="8dp" android:gravity="center_vertical" android:clickable="true" android:focusable="true">
+                <ImageView android:id="@+id/ivTodayToggle" android:layout_width="20dp" android:layout_height="20dp" android:layout_marginEnd="6dp" android:src="@drawable/ic_chevron_down" android:contentDescription="Expand" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="TODAY" android:textStyle="bold" android:textSize="13sp" android:textColor="@color/primary" />
+                <TextView android:id="@+id/tvTodayCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@drawable/bg_tag_personal" android:paddingHorizontal="8dp" android:paddingVertical="2dp" android:text="0" android:textSize="12sp" android:textColor="@color/tag_personal_text" />
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvToday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/bg_glass_card"
+                android:elevation="1dp"
+                android:padding="4dp"
+                android:visibility="visible"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_task" />
+
+            <!-- TOMORROW expanded -->
+            <LinearLayout android:id="@+id/headerTomorrow" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:paddingHorizontal="24dp" android:paddingVertical="8dp" android:gravity="center_vertical" android:clickable="true" android:focusable="true">
+                <ImageView android:id="@+id/ivTomorrowToggle" android:layout_width="20dp" android:layout_height="20dp" android:layout_marginEnd="6dp" android:src="@drawable/ic_chevron_down" android:contentDescription="Expand" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="TOMORROW" android:textStyle="bold" android:textSize="13sp" android:textColor="@color/secondary" />
+                <TextView android:id="@+id/tvTomorrowCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@drawable/bg_tag_personal" android:paddingHorizontal="8dp" android:paddingVertical="2dp" android:text="0" android:textSize="12sp" android:textColor="@color/tag_personal_text" />
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTomorrow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/bg_glass_card"
+                android:elevation="1dp"
+                android:padding="4dp"
+                android:visibility="visible"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_task" />
+
+            <!-- UPCOMING collapsed -->
+            <LinearLayout android:id="@+id/headerUpcoming" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:paddingHorizontal="24dp" android:paddingVertical="12dp" android:gravity="center_vertical" android:clickable="true" android:focusable="true">
+                <ImageView android:id="@+id/ivUpcomingToggle" android:layout_width="20dp" android:layout_height="20dp" android:layout_marginEnd="6dp" android:src="@drawable/ic_chevron_right" android:contentDescription="Collapsed" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="UPCOMING" android:textStyle="bold" android:textSize="13sp" android:textColor="@color/outline" />
+                <TextView android:id="@+id/tvUpcomingCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@drawable/bg_section_header" android:paddingHorizontal="8dp" android:paddingVertical="2dp" android:text="0" android:textSize="12sp" android:textColor="@color/on_surface_variant" />
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvUpcoming"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/bg_glass_card"
+                android:elevation="1dp"
+                android:padding="4dp"
+                android:visibility="gone"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_task" />
+
+            <!-- DONE collapsed -->
+            <LinearLayout android:id="@+id/headerDone" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingHorizontal="24dp" android:paddingVertical="12dp" android:gravity="center_vertical" android:clickable="true" android:focusable="true">
+                <ImageView android:id="@+id/ivDoneToggle" android:layout_width="20dp" android:layout_height="20dp" android:layout_marginEnd="6dp" android:src="@drawable/ic_chevron_right" android:contentDescription="Collapsed" />
+                <ImageView android:layout_width="18dp" android:layout_height="18dp" android:layout_marginEnd="6dp" android:src="@drawable/ic_check_circle" app:tint="@color/success" android:contentDescription="Done" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="DONE" android:textStyle="bold" android:textSize="13sp" android:textColor="@color/success" />
+                <TextView android:id="@+id/tvDoneCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@drawable/bg_section_header" android:paddingHorizontal="8dp" android:paddingVertical="2dp" android:text="0" android:textSize="12sp" android:textColor="@color/success" />
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/bg_glass_card"
+                android:elevation="1dp"
+                android:padding="4dp"
+                android:visibility="gone"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_task" />
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddTask" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="bottom|end" android:layout_margin="24dp" android:src="@android:drawable/ic_input_add" app:backgroundTint="@color/primary" app:tint="@color/white" android:contentDescription="Add Task" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="vn.edu.usth.taskmanagement.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_myDay"
+            app:destination="@id/myDayFragment" />
+        <action
+            android:id="@+id/action_home_to_allTasks"
+            app:destination="@id/allTasksFragment" />
+        <action
+            android:id="@+id/action_home_to_calendar"
+            app:destination="@id/calendarFragment" />
+        <action
+            android:id="@+id/action_home_to_groupDetail"
+            app:destination="@id/groupDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/myDayFragment"
+        android:name="vn.edu.usth.taskmanagement.myday.MyDayFragment"
+        android:label="My Day"
+        tools:layout="@layout/fragment_my_day">
+        <action
+            android:id="@+id/action_myDay_to_home"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/allTasksFragment"
+        android:name="vn.edu.usth.taskmanagement.alltask.AllTasksFragment"
+        android:label="All Tasks"
+        tools:layout="@layout/fragment_all_tasks">
+        <action
+            android:id="@+id/action_allTasks_to_home"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="vn.edu.usth.taskmanagement.calendar.CalendarFragment"
+        android:label="Calendar"
+        tools:layout="@layout/fragment_calendar">
+        <action
+            android:id="@+id/action_calendar_to_home"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/groupDetailFragment"
+        android:name="vn.edu.usth.taskmanagement.group.GroupDetailFragment"
+        android:label="Group Detail"
+        tools:layout="@layout/fragment_group_detail">
+        <argument
+            android:name="workspaceId"
+            app:argType="string" />
+        <argument
+            android:name="workspaceTitle"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_groupDetail_to_home"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

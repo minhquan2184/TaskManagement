@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingBottom="100dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Top Bar -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="56dp" android:gravity="center_vertical" android:paddingHorizontal="16dp">
+                <ImageView android:id="@+id/btnHome" android:layout_width="40dp" android:layout_height="40dp" android:padding="8dp" android:src="@drawable/ic_home" android:contentDescription="Home" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="Calendar" android:textSize="18sp" android:textStyle="bold" android:textColor="@color/on_surface" android:fontFamily="sans-serif-medium" />
+                <ImageView android:id="@+id/btnSync" android:layout_width="40dp" android:layout_height="40dp" android:padding="8dp" android:src="@drawable/ic_sync" android:contentDescription="Sync to Google Calendar" />
+            </LinearLayout>
+
+            <!-- Calendar Widget -->
+            <com.applandeo.materialcalendarview.CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:background="@drawable/bg_glass_card"
+                android:elevation="1dp"
+                app:type="classic"
+                app:headerColor="@color/background"
+                app:headerLabelColor="@color/on_surface"
+                app:abbreviationsBarColor="@color/background"
+                app:abbreviationsLabelsColor="@color/on_surface"
+                app:pagesColor="@color/background"
+                app:daysLabelsColor="@color/on_surface"
+                app:todayLabelColor="@color/primary"
+                app:selectionColor="@color/primary"
+                app:eventsEnabled="true" />
+
+            <!-- Selected Day Header -->
+            <TextView
+                android:id="@+id/tvSelectedDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:text="Today"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/on_surface"
+                android:fontFamily="sans-serif-medium" />
+
+            <!-- ==================== APP TASKS SECTION ==================== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="App Tasks"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:id="@+id/tvTaskCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="2dp"
+                android:text="0 tasks"
+                android:textSize="12sp"
+                android:textColor="@color/on_surface_variant" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTasks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="8dp"
+                android:nestedScrollingEnabled="false" />
+
+            <TextView
+                android:id="@+id/tvEmptyState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="No tasks due on this day"
+                android:textSize="13sp"
+                android:textColor="@color/on_surface_variant"
+                android:visibility="gone" />
+
+            <!-- ==================== GOOGLE CALENDAR SECTION ==================== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:text="Google Calendar"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:id="@+id/tvGoogleEventCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="2dp"
+                android:text="0 events"
+                android:textSize="12sp"
+                android:textColor="@color/on_surface_variant" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGoogleEvents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="8dp"
+                android:nestedScrollingEnabled="false" />
+
+            <TextView
+                android:id="@+id/tvGoogleEmpty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="No Google Calendar events"
+                android:textSize="13sp"
+                android:textColor="@color/on_surface_variant"
+                android:visibility="gone" />
+
+            <!-- Sync status -->
+            <TextView
+                android:id="@+id/tvSyncStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:text="Tap sync icon to push tasks to Google Calendar"
+                android:textSize="12sp"
+                android:textColor="@color/outline" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

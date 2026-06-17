@@ -1,0 +1,160 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ==========================================
+// ENUMS
+// ==========================================
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  DONE
+  ARCHIVED
+}
+
+enum ActivityType {
+  CHAT_MESSAGE
+  STATE_TRANSITION
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum WorkspaceRole {
+  ADMIN
+  MEMBER
+  VIEWER
+}
+
+// ==========================================
+// MODELS
+// ==========================================
+
+model User {
+  id                 String    @id @default(uuid()) @db.Uuid
+  email              String    @unique @db.VarChar(255)
+  fullName           String?   @db.VarChar(255)
+  avatarUrl          String?
+  fcmToken           String?   // Dành cho Push Notifications
+  
+  // OAuth Google
+  googleAccessToken  String?
+  googleRefreshToken String?
+  
+  createdAt          DateTime  @default(now()) @db.Timestamptz
+  updatedAt          DateTime  @default(now()) @updatedAt @db.Timestamptz
+
+  // Relations
+  ownedWorkspaces    Workspace[]       @relation("WorkspaceOwner")
+  workspaces         WorkspaceMember[]
+  createdTasks       Task[]            @relation("CreatedTasks")
+  assignedTasks      Task[]            @relation("AssignedTasks")
+  activities         ActivityEvent[]
+  sentInvitations    WorkspaceInvitation[] @relation("SentInvitations")
+}
+
+model Workspace {
+  id          String   @id @default(uuid()) @db.Uuid
+  title       String   @db.VarChar(255)
+  description String?
+  isPersonal  Boolean  @default(false)
+  ownerId     String   @db.Uuid
+  
+  createdAt   DateTime @default(now()) @db.Timestamptz
+  updatedAt   DateTime @default(now()) @updatedAt @db.Timestamptz
+
+  // Relations
+  owner       User              @relation("WorkspaceOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  members     WorkspaceMember[]
+  tasks       Task[]
+  invitations WorkspaceInvitation[]
+}
+
+model WorkspaceMember {
+  workspaceId              String        @db.Uuid
+  userId                   String        @db.Uuid
+  role                     WorkspaceRole @default(MEMBER)
+  pushNotificationsEnabled Boolean       @default(true) // Group settings: Push notification
+  joinedAt                 DateTime      @default(now()) @db.Timestamptz
+
+  // Relations
+  workspace   Workspace     @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([workspaceId, userId])
+}
+
+model Task {
+  id             String     @id @default(uuid()) @db.Uuid
+  workspaceId    String     @db.Uuid
+  createdBy      String     @db.Uuid
+  assigneeId     String?    @db.Uuid
+  
+  title          String     @db.VarChar(255)
+  description    String?    @db.Text
+  status         TaskStatus @default(TODO)
+  priority       Priority   @default(MEDIUM)
+  dueDate        DateTime?  @db.Timestamptz
+  
+  // Google Calendar Sync
+  googleEventId  String?    @db.VarChar(255)
+  lastSyncedAt   DateTime?  @db.Timestamptz
+  
+  createdAt      DateTime   @default(now()) @db.Timestamptz
+  updatedAt      DateTime   @default(now()) @updatedAt @db.Timestamptz
+
+  // Relations
+  workspace      Workspace  @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  creator        User       @relation("CreatedTasks", fields: [createdBy], references: [id], onDelete: Cascade)
+  assignee       User?      @relation("AssignedTasks", fields: [assigneeId], references: [id], onDelete: SetNull)
+  
+  activities     ActivityEvent[]
+  tags           Tag[]      @relation("TaskTags")
+}
+
+
+
+// Lưu trữ lịch sử hoạt động và chat của Task
+model ActivityEvent {
+  id          String       @id @default(uuid()) @db.Uuid
+  taskId      String       @db.Uuid
+  actorId     String       @db.Uuid
+  eventType   ActivityType
+  content     String?      @db.Text // Nội dung tin nhắn chat HOẶC dữ liệu log trạng thái (JSON string)
+  timestamp   DateTime     @default(now()) @db.Timestamptz
+
+  // Relations
+  task        Task         @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  actor       User         @relation(fields: [actorId], references: [id], onDelete: Cascade)
+}
+
+model Tag {
+  id    String  @id @default(uuid()) @db.Uuid
+  name  String  @db.VarChar(100)
+  color String? @db.VarChar(20)
+
+  // Relations
+  tasks Task[]  @relation("TaskTags")
+}
+
+model WorkspaceInvitation {
+  id          String   @id @default(uuid()) @db.Uuid
+  workspaceId String   @db.Uuid
+  inviterId   String   @db.Uuid
+  email       String   @db.VarChar(255)
+  token       String   @unique
+  status      String   @default("PENDING") // PENDING, ACCEPTED
+  createdAt   DateTime @default(now()) @db.Timestamptz
+
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  inviter     User      @relation("SentInvitations", fields: [inviterId], references: [id], onDelete: Cascade)
+}

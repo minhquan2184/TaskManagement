@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Ether Canvas — Any.do Inspired Light Theme -->
+    <color name="background">#F9F9FE</color>
+    <color name="surface">#F2F3FA</color>
+    <color name="surface_lowest">#FFFFFF</color>
+    <color name="surface_high">#E5E8F0</color>
+    <color name="surface_highest">#DEE2EC</color>
+
+    <color name="primary">#0062A7</color>
+    <color name="primary_container">#60A4EF</color>
+    <color name="primary_dim">#005593</color>
+    <color name="primary_variant">#5297E0</color>
+
+    <color name="secondary">#546071</color>
+    <color name="secondary_container">#D7E3F8</color>
+
+    <color name="tertiary">#615984</color>
+    <color name="tertiary_container">#D3C8F9</color>
+
+    <!-- Text colors -->
+    <color name="on_surface">#000000</color>
+    <color name="on_surface_variant">#333333</color>
+    <color name="on_primary">#F7F9FF</color>
+    <color name="outline">#555555</color>
+    <color name="outline_variant">#888888</color>
+
+    <!-- Semantic colors -->
+    <color name="success">#4CAF50</color>
+    <color name="success_light">#E8F5E9</color>
+    <color name="priority_high">#E53935</color>
+    <color name="priority_high_light">#FFEBEE</color>
+    <color name="error">#A83836</color>
+
+    <!-- Tag colors -->
+    <color name="tag_personal">#E3F0FF</color>
+    <color name="tag_personal_text">#0062A7</color>
+    <color name="tag_group_a">#FFF3E0</color>
+    <color name="tag_group_a_text">#E65100</color>
+    <color name="tag_group_b">#F3E5F5</color>
+    <color name="tag_group_b_text">#6A1B9A</color>
+
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="shadow_color">#0A2E333A</color>
+</resources>

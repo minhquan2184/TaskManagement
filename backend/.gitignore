@@ -1,0 +1,9 @@
+node_modules
+# Keep environment variables out of version control
+.env
+
+/generated/prisma
+
+# Ignore service account keys and logs
+firebaseServiceAccountKey.json
+backend_log.txt

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="vn.edu.usth.taskmanagement.home.HomeFragment"
+        android:name="vn.edu.usth.taskmanagement.presentation.home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
         <action
@@ -26,7 +26,7 @@
 
     <fragment
         android:id="@+id/myDayFragment"
-        android:name="vn.edu.usth.taskmanagement.myday.MyDayFragment"
+        android:name="vn.edu.usth.taskmanagement.presentation.myday.MyDayFragment"
         android:label="My Day"
         tools:layout="@layout/fragment_my_day">
         <action
@@ -38,7 +38,7 @@
 
     <fragment
         android:id="@+id/allTasksFragment"
-        android:name="vn.edu.usth.taskmanagement.alltask.AllTasksFragment"
+        android:name="vn.edu.usth.taskmanagement.presentation.alltask.AllTasksFragment"
         android:label="All Tasks"
         tools:layout="@layout/fragment_all_tasks">
         <action
@@ -50,7 +50,7 @@
 
     <fragment
         android:id="@+id/calendarFragment"
-        android:name="vn.edu.usth.taskmanagement.calendar.CalendarFragment"
+        android:name="vn.edu.usth.taskmanagement.presentation.calendar.CalendarFragment"
         android:label="Calendar"
         tools:layout="@layout/fragment_calendar">
         <action
@@ -62,7 +62,7 @@
 
     <fragment
         android:id="@+id/groupDetailFragment"
-        android:name="vn.edu.usth.taskmanagement.group.GroupDetailFragment"
+        android:name="vn.edu.usth.taskmanagement.presentation.group.GroupDetailFragment"
         android:label="Group Detail"
         tools:layout="@layout/fragment_group_detail">
         <argument

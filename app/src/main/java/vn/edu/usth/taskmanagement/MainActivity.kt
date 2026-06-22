@@ -13,7 +13,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
-import vn.edu.usth.taskmanagement.api.UserRemoteDataSource
+import vn.edu.usth.taskmanagement.data.remote.source.UserRemoteDataSource
 import vn.edu.usth.taskmanagement.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

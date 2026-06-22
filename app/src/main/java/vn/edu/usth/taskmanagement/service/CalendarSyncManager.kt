@@ -252,15 +252,16 @@ class CalendarSyncManager(private val context: Context) {
 
     fun parseDateToMillis(dateStr: String): Long {
         val formats = listOf(
-            "yyyy-MM-dd'T'HH:mm:ss",
+            "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
             "yyyy-MM-dd'T'HH:mm:ss'Z'",
+            "yyyy-MM-dd'T'HH:mm:ss",
             "yyyy-MM-dd'T'HH:mm",
             "yyyy-MM-dd"
         )
         for (format in formats) {
             try {
                 val sdf = SimpleDateFormat(format, Locale.US)
-                if (format.endsWith("'Z'")) {
+                if (format.contains("'Z'")) {
                     sdf.timeZone = TimeZone.getTimeZone("UTC")
                 } else {
                     sdf.timeZone = TimeZone.getDefault()

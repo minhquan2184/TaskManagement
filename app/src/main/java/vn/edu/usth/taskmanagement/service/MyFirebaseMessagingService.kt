@@ -16,7 +16,8 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import vn.edu.usth.taskmanagement.MainActivity
 import vn.edu.usth.taskmanagement.R
-import vn.edu.usth.taskmanagement.api.UserRemoteDataSource
+import vn.edu.usth.taskmanagement.data.remote.source.UserRemoteDataSource
+import vn.edu.usth.taskmanagement.data.local.SessionManager
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 

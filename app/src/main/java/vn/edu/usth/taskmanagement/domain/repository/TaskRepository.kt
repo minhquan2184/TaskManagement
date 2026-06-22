@@ -10,6 +10,7 @@ interface TaskRepository {
     suspend fun updateTask(taskId: String, title: String?, description: String?, priority: String?, dueDate: String?, assigneeId: String? = null): TaskModel
     suspend fun deleteTask(taskId: String)
     suspend fun toggleTaskStatus(taskId: String, isDone: Boolean): TaskModel
+    suspend fun updateCalendarEventId(taskId: String, eventId: String)
     suspend fun refreshTasks()
     suspend fun getTotalTaskCount(): Int
     suspend fun sendTaskChat(taskId: String, content: String)

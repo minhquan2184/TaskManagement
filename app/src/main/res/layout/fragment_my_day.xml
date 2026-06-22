@@ -5,17 +5,10 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:fillViewport="true"
-        android:paddingBottom="100dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        android:orientation="vertical">
 
             <!-- Top Bar -->
             <LinearLayout
@@ -66,27 +59,32 @@
                 android:textColor="@color/on_surface"
                 android:textSize="16sp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvMyDay"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:nestedScrollingEnabled="false"
-                android:paddingBottom="8dp" />
+                android:layout_height="0dp"
+                android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/tvEmpty"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:gravity="center"
-                android:text="No tasks for today"
-                android:textColor="@color/on_surface_variant"
-                android:textSize="14sp"
-                android:visibility="gone" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvMyDay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:paddingBottom="100dp"
+                    android:clipToPadding="false" />
 
-        </LinearLayout>
-    </ScrollView>
+                <TextView
+                    android:id="@+id/tvEmpty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:gravity="center"
+                    android:text="No tasks for today"
+                    android:textColor="@color/on_surface_variant"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+    </LinearLayout>
 
     <!-- FAB -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton

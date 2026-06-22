@@ -5,17 +5,10 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:fillViewport="true"
-        android:paddingBottom="100dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        android:orientation="vertical">
 
             <!-- Top Bar -->
             <LinearLayout android:layout_width="match_parent" android:layout_height="56dp" android:gravity="center_vertical" android:paddingHorizontal="16dp">
@@ -55,6 +48,19 @@
                 android:textStyle="bold"
                 android:textColor="@color/on_surface"
                 android:fontFamily="sans-serif-medium" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fillViewport="true"
+                android:overScrollMode="never">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="100dp">
 
             <!-- ==================== APP TASKS SECTION ==================== -->
             <TextView
@@ -150,7 +156,8 @@
                 android:text="Tap sync icon to push tasks to Google Calendar"
                 android:textSize="12sp"
                 android:textColor="@color/outline" />
-        </LinearLayout>
-    </ScrollView>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

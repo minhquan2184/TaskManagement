@@ -1,6 +1,6 @@
 package vn.edu.usth.taskmanagement
 
-import vn.edu.usth.taskmanagement.injection.appModule
+import vn.edu.usth.taskmanagement.di.appModule
 
 import android.app.Application
 import org.koin.android.ext.koin.androidContext
